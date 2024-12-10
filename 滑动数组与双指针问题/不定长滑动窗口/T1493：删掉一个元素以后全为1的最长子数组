@@ -1,0 +1,22 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ans = 0
+        cnt = Counter()
+        left = 0
+        if len(nums) == sum(nums):
+            return len(nums)-1
+        for right, x in enumerate(nums):
+            cnt[x] += 1
+            while cnt[0] > 1:
+                cnt[nums[left]] -= 1
+                left += 1
+            ans = max(ans, right-left)      #这里长度本来就要减一，因此right-left即可
+        return ans
