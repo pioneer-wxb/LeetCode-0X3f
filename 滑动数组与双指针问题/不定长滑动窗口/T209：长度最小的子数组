@@ -1,1 +1,47 @@
+class Solution(object):
+###
+对于此题而言，在left移动时，子数组的和是在不断变小的，那while条件就从满足要求不断地变成不满足要求，这就是单调性。
+正是由于单调性，我们才可以使用双指针。
 
+虽然写出来的是一个二重循环，但此时的时间复杂度并不是O(N*2)的，因为left+=1的次数至多为N次，此二重循环的复杂度可以理解为left+=1的次数，或者是right+=1的次数
+right是由0加到N为止，而left也是由0加到N为止，所以时间复杂度为O(N)；此代码中只用到了几个变量，所以空间复杂度为O(1)。
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        sum = 0
+        ans = n+1
+        left = 0
+        for right, x in enumerate(nums):
+            sum += x
+            while sum >= target:
+                ans = min(ans, right-left+1)
+                sum -= nums[left]
+                left += 1
+        return ans if ans <= n else 0
+
+
+   def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        sum = 0
+        ans = n+1
+        left = 0
+        for right, x in enumerrate(nums):
+            sum += x
+            while sum - nums[left] >= target:
+                sum -= nums[left]
+                left += 1
+            if sum >= target:
+                ans = min(ans, right-left+1)
+        return ans if ans <= n else 0
