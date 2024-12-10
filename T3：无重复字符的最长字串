@@ -1,0 +1,21 @@
+class Solution(object):
+###
+时间复杂度与T209和T713是一样的，注意left和right均为由0加到N的；而空间复杂度的判断中，由于s可以看成ASCII字符，而其至多由128个，因此空间复杂度为O(128)或者是O(1)均可
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        ans = 0
+        cnt = Counter()
+        left = 0
+        for right, c in enumerate(s):
+            cnt[c] += 1
+            while cnt[c] > 1:
+                cut[s[left]] -= 1
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
