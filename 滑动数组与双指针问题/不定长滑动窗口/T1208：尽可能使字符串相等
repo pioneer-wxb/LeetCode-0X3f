@@ -1,0 +1,24 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def equalSubstring(self, s, t, maxCost):
+        """
+        :type s: str
+        :type t: str
+        :type maxCost: int
+        :rtype: int
+        """
+        #在sumCost<=cosCost范围内寻找最长的子字符串
+        ans = 0
+        sumCost = 0
+        left = 0
+        for right, (chs, cht) in enumerate(zip(s, t)):
+            #ord()内置函数，其返回单个字符对应的ASCII码值
+            sumCost += abs(ord(chs)-ord(cht))
+            while sumCost > maxCost:
+                sumCost -= abs(ord(s[left]) - ord(t[left]))
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
