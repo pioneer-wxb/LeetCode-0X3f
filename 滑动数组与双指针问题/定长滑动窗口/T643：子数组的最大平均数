@@ -1,1 +1,20 @@
-
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        """
+        total = 0.0
+        ans = float("-inf")
+        for i, num in enumerate(nums):
+            total += num
+            if i < k - 1:
+                continue
+            ans = max(ans, total/k)
+            total -= nums[i - k + 1]
+        return ans
