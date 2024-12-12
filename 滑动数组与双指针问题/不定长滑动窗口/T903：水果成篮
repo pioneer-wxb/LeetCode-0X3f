@@ -1,0 +1,22 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def totalFruit(self, fruits):
+        """
+        :type fruits: List[int]
+        :rtype: int
+        """
+        ans = 0
+        cnt = Counter()
+        left = 0
+        for right, c in enumerate(fruits):
+            cnt[c] += 1
+            while len(cnt) > 2:
+                cnt[fruits[left]] -= 1
+                if fruits[left] == 0:
+                    del fruits[left]
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
