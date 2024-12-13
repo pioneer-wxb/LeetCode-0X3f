@@ -11,7 +11,7 @@ class Solution(object):
         :rtype: int
         """
         ans = 0
-        Sum = 0
+        Sum = 0.0
         for i, x in enumerate(arr):
             Sum += x
             if i < k-1:
