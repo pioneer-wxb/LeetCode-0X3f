@@ -1,4 +1,8 @@
 class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
     def hasAllCodes(self, s, k):
         """
         :type s: str
