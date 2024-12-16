@@ -1,0 +1,11 @@
+class Solution(object):
+    def hasAllCodes(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: bool
+        """
+        cnt = Counter()
+        for i in range(len(s)-k+1):
+            cnt[s[i:i+k]] = 1
+        return len(cnt.keys()) == 2**k
