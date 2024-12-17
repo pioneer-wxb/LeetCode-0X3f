@@ -1,0 +1,19 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def maximumBeauty(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        nums.sort()
+        ans = 0
+        left = 0
+        for right, x in enumerate(nums):
+            while x - nums[left] > 2*k:
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
