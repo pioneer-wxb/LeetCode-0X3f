@@ -1,0 +1,21 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def maxSubarrayLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        ans = 0
+        dic = Counter()
+        left = 0
+        for right, x in enumerate(nums):
+            dic[x] += 1
+            while dic[x] > k:
+                dic[nums[left]] -= 1
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
