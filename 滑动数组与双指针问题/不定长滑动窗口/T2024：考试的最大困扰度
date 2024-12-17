@@ -1,0 +1,21 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def maxConsecutiveAnswers(self, answerKey, k):
+        """
+        :type answerKey: str
+        :type k: int
+        :rtype: int
+        """
+        ans = 0
+        dic = Counter()
+        left = 0
+        for right, x in enumerate(answerKey):
+            dic[x] += 1
+            while dic["T"] > k and dic["F"] > k:
+                dic[answerKey[left]] -= 1
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
