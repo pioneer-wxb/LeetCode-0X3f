@@ -1,0 +1,23 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def maximumUniqueSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ans = 0
+        dic = Counter()
+        s = 0
+        left = 0
+        for right, x in enumerate(nums):
+            s += x
+            dic[x] += 1
+            while dic[x] == 2:
+                dic[nums[left]] -= 1
+                s -= nums[left]
+                left += 1
+            ans = max(ans, s)
+        return ans
