@@ -1,0 +1,21 @@
+class Solution(object):
+###
+时间复杂度——O(N)
+空间复杂度——O(1)
+###
+    def longestOnes(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        ans = 0
+        dic0 = 0
+        left = 0
+        for right, x in enumerate(nums):
+            dic0 += 1-x
+            while dic0 > k:
+                dic0 -= 1 - nums[left]
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
