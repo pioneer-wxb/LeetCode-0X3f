@@ -1,0 +1,20 @@
+class Solution(object):
+###
+时间复杂度：O(N)
+空间复杂度：O(1)
+###
+    def maxFreq(self, s, maxLetters, minSize, maxSize):
+        """
+        :type s: str
+        :type maxLetters: int
+        :type minSize: int
+        :type maxSize: int
+        :rtype: int
+        """
+        ans = 0
+        cnt = Counter()
+        for i in range(len(s)-minSize+1):
+            cnt[s[i:i+minSize]] += 1
+            ans = max(ans, max(cnt.values()))
+        return ans
+            
